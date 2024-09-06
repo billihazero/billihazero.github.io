@@ -1,7 +1,5 @@
 ---
-title: "search"
+title: Search
 layout: search
 permalink: /search/
-author_profiles: true
-sidebar_main: true
 ---
