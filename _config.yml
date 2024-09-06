@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 # Site Settings
 locale                   : "ko-KR"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "하용로그"
+title                    : "billihazero"
 title_separator          : "|"
 subtitle                 : "Lumos Maxima"
 name                     : "billihazero"
@@ -113,11 +113,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "billihazero"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  bio              : #
+  location         : "South Korea"
+  email            : "billihazero@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
