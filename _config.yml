@@ -19,7 +19,7 @@ locale                   : "ko-KR"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "하용로그"
 title_separator          : "|"
-subtitle                 : "두리둥실 춤을 춘다"
+subtitle                 : "Lumos Maxima"
 name                     : "billihazero"
 description              : "개발노트 입니다."
 url                      : "https://billihazero.github.io"
