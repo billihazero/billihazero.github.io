@@ -12,6 +12,8 @@ docs:
         url: /categories/#blog
       - title: "Tag"
         url: /tags/
+      - title: "TIL"
+        url: /TIL/
     
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
