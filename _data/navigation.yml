@@ -13,7 +13,7 @@ docs:
       - title: "Tag"
         url: /tags/
       - title: "TIL"
-        url: /TIL/
+        url: /til/
     
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
