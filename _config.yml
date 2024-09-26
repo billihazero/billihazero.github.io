@@ -17,9 +17,9 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 # Site Settings
 locale                   : "ko-KR"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "billihazero"
+title                    : "초보의 개발노트"
 title_separator          : "|"
-subtitle                 : "개발노트"
+subtitle                 : ""
 name                     : "billihazero"
 description              : "개발노트 입니다."
 url                      : "https://billihazero.github.io"
