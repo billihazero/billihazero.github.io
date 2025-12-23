@@ -5,8 +5,6 @@ categories:
 
 tags:
   - Diary
-photos:
-  - /post_images/kurimanju.png
 ---
 
 ![](/post_images/kurimanju.png)
