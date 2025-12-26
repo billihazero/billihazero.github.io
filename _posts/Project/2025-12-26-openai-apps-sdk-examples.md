@@ -1,6 +1,6 @@
 ---
 title: ChatGPT Apps SDK 예제 실행해보기
-#date: 2013-12-24 23:30:09
+
 categories:
   - Project
 
