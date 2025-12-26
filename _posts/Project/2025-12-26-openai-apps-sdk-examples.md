@@ -9,7 +9,7 @@ tags:
   - Apps-SDK
 
 photos:
-  - ![mcp architecture](/post_images/mcp_architecture.png)
+  - /post_images/mcp_architecture.png
 ---
 
 ChatGPT에 앱을 등록해보기 위해, <br>
