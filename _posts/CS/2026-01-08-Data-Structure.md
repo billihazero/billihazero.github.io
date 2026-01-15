@@ -82,3 +82,64 @@ def joseph(n, k):
 result = joseph(n, k)
 print("마지막 생존자: " , result)
 ```
+
+## Linked List (연결 리스트)
+
+> Linked List는 Node(key, link)라는 구조체가 연결되는 형식으로 데이터를 저장하는 자료구조 입니다.
+
+![alt text](/post_images/list_img.png)
+
+### ArrayList와 LinkedList의 차이점
+
+#### ArrayList
+
+Array는 메모리 상에서 연속되 공간을 차지하기 때문에, 각 요소는 인덱스를 통해 직접 접근할 수 있습니다. <br>
+
+배열의 시작 주소를 알고 있다면 i 번째 인덱스의 요소를 읽거나 수정하는데 O(1)의 시간복잡도를 가집니다.<br>
+
+조회 성능이 매우 빠른 것이 장점이라면, 중간에 요소를 삽입하거나 삭제를 하기 위해선 뒤에 있는 요소들을 모두 이동(O(n))시켜야 하므로, 이 경우에는 성능이 저하될 수 있습니다.
+
+#### LinkedList
+
+LinkedList는 Node라는 단위로 구성되며, 각 Node는 데이터 값과 다음 노드를 가리키는 주소를 함께 저장합니다.<br>
+
+이 구조는 메모리 상에서 연속성을 유지하지 않으며, 특정 인덱스의 요소로 접근하기 위해서는 Head Node부터 시작하여 순차적으로 다음 노드를 따라가야 합니다. <br>
+
+두 번째 요소에 접근하려면 Head Node 부터 시작하여 두 번 이동해야 하므로, O(n)의 시간복잡도를 가집니다. <br>
+
+노드 간의 연결만 변경하면 되기 때문에 중간 삽입이나 삭제는 O(1)에 가깝게 처리할 수 있습니다. <br>
+
+LinkedList에는 한방향 연결리스트, 양방향 연결리스트가 있습니다.
+
+---
+
+한방향 연결리스트(Singly Linked List)는 Node 객체들이 연결된 구조로 이루어져 있습니다.
+
+Node 클래스를 구현해 봅니다.
+
+```
+class Node:
+    def __init__(self, key=None):
+        self.key = key (값 저장)
+        self.next = None (주소 저장)
+    def __str__(self):
+        return str(self.key)
+
+a = Node(3)
+b = Node(9)
+c = Node(-1)
+d = Node(2)
+```
+
+각 Node는 각각의 변수에 할당되어 있지만, 실제로 연결리스트를 순회하는 데에는 모든 노드의 변수를 알고 있을 필요가 없습니다. <br>
+
+첫 번째 노드인 Head Node만 알고 있으면, next 참조를 따라가면 나머지 모든 노드에 접근 할 수 있습니다.
+
+SinglyLinkedList 클래스를 구현합니다.
+
+```
+Class SinglyLinkedList:
+    def __init__(self):
+        self.head = None (Head Node의 주소)
+        self.size = 0 (LinkedList를 구성하는 Node의 개수)
+```
