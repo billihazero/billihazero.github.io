@@ -135,11 +135,44 @@ d = Node(2)
 
 첫 번째 노드인 Head Node만 알고 있으면, next 참조를 따라가면 나머지 모든 노드에 접근 할 수 있습니다.
 
-SinglyLinkedList 클래스를 구현합니다.
+SinglyLinkedList 클래스를 구현합니다. 기본 구성요소를 정의하고, 노드의 삽입과 삭제를 처리하는 메서드를 구현합니다.
 
 ```
 Class SinglyLinkedList:
     def __init__(self):
-        self.head = None (Head Node의 주소)
-        self.size = 0 (LinkedList를 구성하는 Node의 개수)
+        self.head =None  #Head Node의 주소
+        self.size = 0    #LinkedList를 구성하는 Node의 개수
+    def__len__(self):
+        return self.size
+```
+
+```
+    def pushFront(self, key):
+        new_node = Node(key)
+        new_node.next = self.head
+        self_head = new_node
+        self.size +=1
+
+    def pushBack(self, key):
+        if len(self) == 0:
+            return None
+        else:
+            new_node = Node(key)
+            tail = self.head
+            while(tail.next !== None):
+                tail.next = tail
+            tail.next = new_node
+            self.size -= 1
+```
+
+```
+    def popFront(self, key):
+        if self.head is None:
+            return None
+        else:
+            removed = self.head
+            self.head = self.head.next
+            self.size -= 1
+            return removed.key
+
 ```
