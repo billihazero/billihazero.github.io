@@ -117,6 +117,8 @@ LinkedList에는 한방향 연결리스트, 양방향 연결리스트가 있습�
 
 Node 클래스를 구현해 봅니다.
 
+#### LinkedList 기본
+
 ```
 class Node:
     def __init__(self, key=None):
@@ -145,6 +147,8 @@ Class SinglyLinkedList:
     def__len__(self):
         return self.size
 ```
+
+#### LinkedList 삽입, 삭제
 
 ```
     def pushFront(self, key):
@@ -202,3 +206,38 @@ Class SinglyLinkedList:
             return key
 
 ```
+
+#### LinkedList 탐색 + 제너레이터
+
+한방향 연결리스트에서 노드를 탐색하는 방법과, 탐색 로직을 **제너레이터(generator)** 로 구현하는 메서드를 구현합니다.
+
+```
+def search(self,key):
+    #key값의 node를 return, key값이 없다면 None return
+    v = self.head
+    while v is not None:
+        if v.key == key:
+            reuturn v
+        else:
+            v = v.next
+    return None (or v = None)
+```
+
+제너레이터 함수는 반복 가능한 (iterable) 객체를 만들기 위해 사용하는 함수로, "for x in list" 와 같은 반복문에서 특히 유용합니다. 파이썬의 for문은 내부적으로 객체의 **이터레이터(iterator)**를 자동으로 요청하여 순차적으로 값을 가져옵니다. <br>
+
+따라서 for x in SinglyLinkedList 와 같은 형태의 반복을 지원하려면, 파이썬이 해당 객체를 어떻게 순회해야 하는지 알 수 있도록 이터레이터를 제공해야합니다. 이를 위해 연결리스트를 구현할 때 특수 메서드인 **iterator**를 정의하는 것이 바람직 합니다.
+
+```
+def __iter__(self):
+    v = self.head
+    while v is not None:
+        yield v
+    v = v.next
+
+```
+
+yield는 함수의 실행을 완전히 종료하지 않고, 현재 상태를 유지한 채 값을 반환하는 키워드 이다. yield가 포함된 함수는 **제너레이터(generator)**가 되며, 반복 요청이 있을 때 마다 값을 하나씩 반환한다. <br>
+
+제너레이터 함수에서 더이상 yield 할 것이 없고 함수의 실행이 끝나면, 파이썬은 내부적으로 StopIteration 예외를 발생시켜 반복이 종료된다.<br>
+
+(순차적 자료구조에서 iterator 메서드를 구현해놓는 것이 좋다.)
