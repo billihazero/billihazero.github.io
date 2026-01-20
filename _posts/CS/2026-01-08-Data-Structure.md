@@ -174,5 +174,31 @@ Class SinglyLinkedList:
             self.head = self.head.next
             self.size -= 1
             return removed.key
+```
+
+```
+    def popBack(self):
+        if len(self) == 0 :
+            return None
+
+        #노드가 2개 이상인 경우
+        prev = None
+        tail = self.head
+
+        # tail.next가 None이 될때까지
+        while tail.next is not None:
+            prev = tail
+            tail = tail.next
+
+        # tail = 마지막 노드, prev = 마지막 바로 앞 노드
+        # tail.Next = None (tail 끝까지 온 것)
+        if len(self) == 1 :
+            self.head = None
+        else:
+            prev.next = None
+            key = tail.key
+            del tail
+            self.size -= 1
+            return key
 
 ```
