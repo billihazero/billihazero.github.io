@@ -87,19 +87,15 @@ print("마지막 생존자: " , result)
 
 > Linked List는 Node(key, link)라는 구조체가 연결되는 형식으로 데이터를 저장하는 자료구조 입니다.
 
-![alt text](/post_images/list_img.png)
+![linkedlist](/post_images/list_img.png)
 
 ### ArrayList와 LinkedList의 차이점
-
-#### ArrayList
 
 Array는 메모리 상에서 연속되 공간을 차지하기 때문에, 각 요소는 인덱스를 통해 직접 접근할 수 있습니다. <br>
 
 배열의 시작 주소를 알고 있다면 i 번째 인덱스의 요소를 읽거나 수정하는데 O(1)의 시간복잡도를 가집니다.<br>
 
 조회 성능이 매우 빠른 것이 장점이라면, 중간에 요소를 삽입하거나 삭제를 하기 위해선 뒤에 있는 요소들을 모두 이동(O(n))시켜야 하므로, 이 경우에는 성능이 저하될 수 있습니다.
-
-#### LinkedList
 
 LinkedList는 Node라는 단위로 구성되며, 각 Node는 데이터 값과 다음 노드를 가리키는 주소를 함께 저장합니다.<br>
 
@@ -117,7 +113,7 @@ LinkedList에는 한방향 연결리스트, 양방향 연결리스트가 있습�
 
 Node 클래스를 구현해 봅니다.
 
-#### LinkedList 기본
+### Singly Linked List 기본
 
 ```
 class Node:
@@ -148,7 +144,7 @@ Class SinglyLinkedList:
         return self.size
 ```
 
-#### LinkedList 삽입, 삭제
+#### Singly Linked List 삽입, 삭제
 
 ```
     def pushFront(self, key):
@@ -207,7 +203,7 @@ Class SinglyLinkedList:
 
 ```
 
-#### LinkedList 탐색 + 제너레이터
+#### Singly Linked List 탐색 + 제너레이터
 
 한방향 연결리스트에서 노드를 탐색하는 방법과, 탐색 로직을 **제너레이터(generator)** 로 구현하는 메서드를 구현합니다.
 
@@ -236,8 +232,57 @@ def __iter__(self):
 
 ```
 
-yield는 함수의 실행을 완전히 종료하지 않고, 현재 상태를 유지한 채 값을 반환하는 키워드 이다. yield가 포함된 함수는 **제너레이터(generator)**가 되며, 반복 요청이 있을 때 마다 값을 하나씩 반환한다. <br>
+yield는 함수의 실행을 완전히 종료하지 않고, 현재 상태를 유지한 채 값을 반환하는 키워드 입니다. yield가 포함된 함수는 **제너레이터(generator)**가 되며, 반복 요청이 있을 때 마다 값을 하나씩 반환합니다. <br>
 
-제너레이터 함수에서 더이상 yield 할 것이 없고 함수의 실행이 끝나면, 파이썬은 내부적으로 StopIteration 예외를 발생시켜 반복이 종료된다.<br>
+제너레이터 함수에서 더이상 yield 할 것이 없고 함수의 실행이 끝나면, 파이썬은 내부적으로 StopIteration 예외를 발생시켜 반복이 종료됩니다.<br>
 
-(순차적 자료구조에서 iterator 메서드를 구현해놓는 것이 좋다.)
+(순차적 자료구조에서 iterator 메서드를 구현해놓는 것이 좋습니다.)
+
+### Doubly Linked List 기본
+
+한방향 연결리스트(Singly Linked List)는 각 노드가 다음 노드만을 가리키는 구조입니다. 이 구조에서는 **tail 노드의 이전 노드(prev)를 알기 위해 처음부터 순회해야 하므로 O(n)의 시간이 소요되는 단점**이 있습니다.
+
+이러한 단점을 보완하기 위해 등장한 자료구조가 **양방향 연결리스트(Double Linked List)** 입니다. 양방향 연결 리스트는 각 노드가 이전 노드(prev)와 다음 노드(next)를 모두 가리키도록 구성되어 있어, 앞뒤 방향으로의 이동이 가능하며 특정 노드의 삭제나 삽입을 더 효율적으로 처리할 수 있습니다.
+
+다만, 노드마다 관리해야 할 링크가 하나 더 늘어나기 때문에 메모리 사용량이 증가하고 구현 복잡도가 높아질 수 있다는 단점도 존재합니다.
+
+#### 원형 양방향 연결 리스트 (Circularly Doubly Linked List)
+
+양방향 연결리스트를 확장한 형태로 **원형 양방향 연결 리스트 (Circularly Doubly Linked List)** 가 있습니다.
+
+이 구조에서는
+
+- tail 노드의 next가 head 노드를 가리키고
+- head 노드의 prev가 tail 노드를 가리키는 방식
+
+으로 연결되어, 리스트의 시작과 끝이 하나의 원으로 이어집니다.
+
+이 구조를 구현할 때는 보통 **빈 리스트를 하나의 노드로 표현**하는데, 이를 dummy node라고 부릅니다.
+
+dummy node는 실제 데이터를 저장하지 않으며, 리스트에서 **어디가 시작인지 표시해주는 기준(마커)역할**을 합니다.
+
+```
+class Node:
+    def __init__(self, key=None):
+        self.key = key
+        self.next = self
+        self.prev = self
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = Node()
+        self.size = 0
+    def __iter ...
+    def __str ...
+    def __len ...
+
+```
+
+#### 양방향 연결리스트에서의 삽입,삭제 = Splice 연산 적용
+
+```
+def __splice__(self, a, b, x):
+
+```
+
+![Circularly Doubly Linked List](/post_images/circlyList.png)
