@@ -278,11 +278,78 @@ class DoublyLinkedList:
 
 ```
 
-#### 양방향 연결리스트에서의 삽입,삭제 = Splice 연산 적용
+#### 양방향 연결리스트에서 Splice 연산 적용
+
+splice(a, b, x): 현재 리스트에서 연속 구간 [a,,,b] (a부터 b까지)를 잘라낸 다음, 노드 x 에 그 구간을 그대로 붙인다.
+
+##### Splice 연산의 조건
+
+Splice 연산이 정상적으로 동작하기 위해서는 다음 조건들이 반드시 만족되어야 한다.
+
+- 조건 1: a -> ... -> b 관계가 성립해야한다.
+- 조건 2: a와 b 사이에 head 노드가 존재하면 안된다.
+
+![Circularly Doubly Linked List](/post_images/circlyList.png)
 
 ```
 def __splice__(self, a, b, x):
 
+    # [a..b] 구간을 떼어내기
+    a_prev = a.prev
+    b_next = b.next
+    a_prev.next = b_next
+    b_next.prev = a_prev
+
+    # [a..b] 구간을 x 뒤에 삽입하기
+    x_next = x.next
+
+    x.next = a
+    a.prev = x
+
+    b.next = x_next
+    x_next.prev = b
 ```
 
-![Circularly Doubly Linked List](/post_images/circlyList.png)
+#### Splice 연산을 활용한 삽입, 이동, 탐색, 삭제 연산
+
+##### 이동연산
+
+이동연산에는 총 4개의 함수가 있다.
+moveAfter/Before, insertAfter/Before
+
+```
+def moveAfter(self, a, x): #노드a를 노드x 다음으로 이동
+    => splice(a, a, x) # a ~ a 까지 x의 뒤로 이동
+
+def moveBefore(self, a, x): #노드 a를 노드 x 전으로 이동
+    splice(a, a, x.prev) # a~a 까지 x 전으로 이동
+
+def insertAfter(self, x, key): #노드 x 다음에 노드(key) = v를 삽입
+    => moveAfter(v, x) => splice(v, v, x)
+
+def insertBefore(self, x, key): #노드 x 전에 노드(key) = v 를 삽입
+    => moveBefore(v, x) => aplice(v, v, x.prev)
+```
+
+##### 탐색연산
+
+```
+def search(self, key):
+    v = self.head #dummy
+    while.next !== self.head: #마지막이 아닐경우
+        if v.key == key:
+            return v
+        v = v.next
+    return None # 못 찾았을 때
+
+```
+
+##### 삭제연산
+
+```
+def remove(x): #노드 x 를 삭제
+    if x is None or x == self.head # x가 없거나, head를 지우면 안됨
+        return
+    x.prev.next = x.next
+    x.next.prev = x.prev
+```
