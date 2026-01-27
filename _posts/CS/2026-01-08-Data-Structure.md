@@ -280,14 +280,14 @@ class DoublyLinkedList:
 
 #### 양방향 연결리스트에서 Splice 연산 적용
 
-splice(a, b, x): 현재 리스트에서 연속 구간 [a,,,b] (a부터 b까지)를 잘라낸 다음, 노드 x 에 그 구간을 그대로 붙인다.
+splice(a, b, x): 현재 리스트에서 연속 구간 [a,,,b] (a부터 b까지)를 잘라낸 다음, 노드 x 에 그 구간을 그대로 붙입니다.
 
 ##### Splice 연산의 조건
 
-Splice 연산이 정상적으로 동작하기 위해서는 다음 조건들이 반드시 만족되어야 한다.
+Splice 연산이 정상적으로 동작하기 위해서는 다음 조건들이 반드시 만족되어야 합니다.
 
-- 조건 1: a -> ... -> b 관계가 성립해야한다.
-- 조건 2: a와 b 사이에 head 노드가 존재하면 안된다.
+- 조건 1: a -> ... -> b 관계가 성립해야합니다.
+- 조건 2: a와 b 사이에 head 노드가 존재하면 안됩니다.
 
 ![Circularly Doubly Linked List](/post_images/circlyList.png)
 
@@ -314,7 +314,7 @@ def __splice__(self, a, b, x):
 
 ##### 이동연산
 
-이동연산에는 총 4개의 함수가 있다.
+이동연산에는 총 4개의 함수가 있습니다.
 moveAfter/Before, insertAfter/Before
 
 ```
@@ -353,3 +353,100 @@ def remove(x): #노드 x 를 삭제
     x.prev.next = x.next
     x.next.prev = x.prev
 ```
+
+## 해시 테이블 (Hash Table)
+
+해시 테이블(Hash Table)은 **삽입, 삭제, 탐색** 연산을 **평균적으로 O(1)**이라는 매우 빠른 시간 복잡도로 수행할 수 있는 자료구조 입니다.
+
+파이썬에서는 해시 테이블이 **dictionary(dict)** 현태로 구현되어 있습니다.
+
+### 파이썬 Dictionary 구조
+
+dictionary는 **key-value 쌍** 으로 데이터를 저장합니다.
+
+```
+D = {
+    2017276: "홍길동",
+    2018209: "김철수",
+    2018229: "톰 크루즈"
+}
+```
+
+key: 학번 - value: 이름 형태로 선언되었습니다.
+
+여기서 각 key는 해시 함수(hash function)을 통해 특정 인덱스로 변환되어 테이블에 저장됩니다.
+
+### 해시 함수와 인덱싱
+
+예를 들어 해시함수가 다음과 같다고 가정해봅니다.
+
+```
+f(k) = k % 10
+```
+
+이 경우, 해시 테이블의 인덱스는 0~9가 됩니다.
+
+```
+key = 2017276 value = 홍길동 f(k) = 6
+key = 2018209 value = 김철수 f(k) = 9
+key = 2018229 value = 톰 크루즈 f(k) = 9
+```
+
+이 때 김철수와 톰크루즈는 동일한 인덱스인 9에 매핑됩니다.
+
+### Collision
+
+이미 9번 인덱스에 김철수가 저장되어 있는데, 같은 위치에 톰 크루즈를 저장하려고 하면 문제가 발생합니다.
+
+이처럼 서로 다른 **key가 동일한 해시 값(인덱스)을 가지는 현상을 Collision(충돌)** 이라고 합니다.
+
+충돌은 해시테이블에서 피할 수 없는 문제이며, 이를 해결하기 위한 전략을 **Collision Resolution Method** 라고 합니다.
+
+### 해시 테이블의 구성 요소
+
+1. Table(보통 배열 or 리스트)
+2. Hash Funciton
+3. Collision Resolution Method
+
+### 좋은 해시 함수란 ?
+
+해시 함수는 다음과 같은 성질을 갖는 것이 이상적입니다.
+
+- 충돌이 적을 것
+- Key들이 테이블 전체에 **고르게 분포** 될 것
+
+이론적으로 **충돌이 절대 발생하지 않는 해시 함수, Perfect Hash Function**이 가장 이상적입니다.
+
+그러나, PHF는
+
+- 모든 key 집합을 미리 알고 있어야 하고,
+- 동적 데이터에는 적용하기 어렵기 때문에
+
+현실적으로 사용하기란 어렵습니다.
+
+### Universal Hash Funtion
+
+현실적인 대안으로 **Universal Hash Function**이 사용됩니다.
+
+서로 다른 두 key x, y에 대해
+
+```
+Pr(f(x) == f(y)) = 1 / m (m = 테이블의 크기)
+```
+
+이 성질을 만족하면 universal hash function 이라고 합니다.
+
+만약 충돌 확률이
+
+```
+Pr(f(x) == f(y)) ≤ c / m   (c > 0)
+```
+
+라면 이를 c-universal hash function 이라고 합니다.
+
+### 대표적인 해시 함수 기법
+
+1. Division method
+2. Multiplication method
+3. Folding
+4. Mid-square method
