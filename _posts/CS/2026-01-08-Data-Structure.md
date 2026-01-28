@@ -451,4 +451,28 @@ Pr(f(x) == f(y)) ≤ c / m   (c > 0)
 3. Folding
 4. Mid-square method
 
+### 충돌 회피 방법
+
+앞서 살펴본 것 처럼 Perfect Hash Function(PHF)이 아닌 이상, 해시 테이블에서는 **충돌(Collision)** 이 반드시 발생합니다.
+
+이미 어떤 slot에 다른 key가 저장되어 있을 때,
+
+**이 데이터를 어디에 저장할 것인가?**
+
+이 문제를 해결하는 방법을 **충돌 회피 방법(Collision Resolution Method)** 이라고 합니다.
+
+### Open Addressing 기법
+
+충돌이 발생했을 때, **테이블 내부에서 다른 빈 공간을 찾아 저장하는 방식**을 **Open Addressing** 이라고 합니다.
+
+Open Addressing에는 대표적으로 다음과 같은 기법들이 있습니다.
+
+- Linear Probing
+- Quadratic Probing
+- Double Hashing
+
+#### Linear Probing
+
+Linear Probing은 충돌이 발생하면 **현재 위치에서 아래 방향(다음 인덱스)으로 한 칸씩 이동** 하며 비어 있는 slot을 찾는 방식입니다.
+
 ![linear probing](/post_images/linear_probing.png)
