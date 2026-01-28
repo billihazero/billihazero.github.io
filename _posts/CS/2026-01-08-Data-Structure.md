@@ -450,3 +450,5 @@ Pr(f(x) == f(y)) ≤ c / m   (c > 0)
 2. Multiplication method
 3. Folding
 4. Mid-square method
+
+![linear probing](/post_images/linear_probing.png)
