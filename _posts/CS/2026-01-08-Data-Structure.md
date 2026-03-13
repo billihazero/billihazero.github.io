@@ -15,6 +15,22 @@ photos:
 
 [신찬수 교수님 유튜브](https://www.youtube.com/watch?v=PIidtIBCjEg&list=PLsMufJgu5933ZkBCHS7bQTx0bncjwi4PK)
 
+## List
+
+Python에서의 List는 읽기/쓰기 이외에 유연한 삽입/삭제 연산을 지원합니다.
+
+```
+A.append(value)         #맨 오른쪽에 새로운 값 value 를 삽입
+A.pop()                 #맨 오른쪽 값을 지우고, 그 값을 리턴
+A.pop(i)                #A[i] 값을 지운 후, 그 값을 리턴. 오른쪽 값들은 왼쪽으로 이동
+A.insert(i, value)      #A[i] 에 새로운 값 value를 삽입, 나머지 오른쪽으로 이동
+A.remove(value)         #value를 찾아 제거, 여러개라면 제일 왼쪽 값을 제거
+A.index(value)          #value 값이 처음으로 등장하는 index 리턴
+A.count(value)          #value 값이 몇 번 등장하는지 횟수를 리턴
+A[i:j]                  #A[i] ~ A[j-1] 까지 복사하여 새로운 리스트 리턴
+value in A              #A에 value 가 있으면 True, 없으면 False를 리턴
+```
+
 ## Queue
 
 > queue는 먼저 저장한 데이터가 먼저 출력되는 선입선출 FIFO 형식으로 데이터를 저장하는 자료구조입니다. <br>
